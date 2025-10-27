@@ -1,0 +1,2 @@
+# AOSP15-RPI5
+Android 15 for RPI 5 ~ ED-HMI3010-101C-0000
