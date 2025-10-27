@@ -1,0 +1,69 @@
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Compiled device tree blobs
+*.dtbo
+*.dtb
+
+# Build artifacts
+build/
+out/
+*.o
+*.a
+*.so
+
+# Logs
+*.log
+error.log
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Package manager files
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# AOSP specific (if someone clones AOSP here by mistake)
+.repo/
+aosp-rpi5/
+
+# Test files
+test_output/
+test_results/
+
+# IDE
+.vscode/
+.idea/
+*.iml

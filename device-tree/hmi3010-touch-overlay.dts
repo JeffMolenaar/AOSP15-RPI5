@@ -1,0 +1,81 @@
+/dts-v1/;
+/plugin/;
+
+/*
+ * Device Tree Overlay for ED-HMI3010-101C Display
+ * 10.1" 1280x800 Capacitive Touch Screen for Raspberry Pi 5
+ * 
+ * Display: HDMI (auto-detected)
+ * Touch: I2C capacitive controller (10-point multi-touch)
+ */
+
+/ {
+    compatible = "brcm,bcm2712";
+
+    fragment@0 {
+        target = <&i2c1>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            /* Capacitive Touch Controller */
+            hmi3010_touch: touchscreen@38 {
+                compatible = "edt,edt-ft5406", "edt,edt-ft5x06";
+                reg = <0x38>;
+                interrupt-parent = <&gpio>;
+                interrupts = <22 2>; /* GPIO22, IRQ_TYPE_EDGE_FALLING (2) */
+                
+                touchscreen-size-x = <1280>;
+                touchscreen-size-y = <800>;
+                touchscreen-inverted-x;
+                touchscreen-inverted-y;
+                touchscreen-swapped-x-y;
+                
+                /* Wake and reset GPIO configuration */
+                reset-gpios = <&gpio 26 1>; /* GPIO26, GPIO_ACTIVE_LOW (1) */
+                wake-gpios = <&gpio 27 0>;  /* GPIO27, GPIO_ACTIVE_HIGH (0) */
+                
+                /* Touch parameters */
+                touchscreen-fuzz-x = <0>;
+                touchscreen-fuzz-y = <0>;
+                touchscreen-fuzz-pressure = <0>;
+                
+                /* Multi-touch support */
+                touchscreen-max-pressure = <255>;
+                
+                status = "okay";
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&i2c1>;
+        __overlay__ {
+            clock-frequency = <100000>;
+        };
+    };
+
+    /* GPIO configuration for touch controller */
+    fragment@2 {
+        target = <&gpio>;
+        __overlay__ {
+            hmi3010_pins: hmi3010_pins {
+                brcm,pins = <22 26 27>;
+                brcm,function = <0 1 1>; /* in, out, out */
+                brcm,pull = <2 0 0>; /* pull-up, none, none */
+            };
+        };
+    };
+
+    __overrides__ {
+        interrupt = <&hmi3010_touch>,"interrupts:0";
+        reset = <&hmi3010_touch>,"reset-gpios:4";
+        wake = <&hmi3010_touch>,"wake-gpios:4";
+        sizex = <&hmi3010_touch>,"touchscreen-size-x:0";
+        sizey = <&hmi3010_touch>,"touchscreen-size-y:0";
+        invx = <&hmi3010_touch>,"touchscreen-inverted-x?";
+        invy = <&hmi3010_touch>,"touchscreen-inverted-y?";
+        swapxy = <&hmi3010_touch>,"touchscreen-swapped-x-y?";
+    };
+};
