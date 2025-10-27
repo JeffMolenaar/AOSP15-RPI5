@@ -27,6 +27,9 @@ YOUR_LOGO="/path/to/your/logo.png"
 BOOT_WIDTH=600
 BOOT_HEIGHT=800
 
+# AOSP lunch target (default: aosp_rpi5-bp1a-userdebug)
+LUNCH_TARGET="aosp_rpi5-bp1a-userdebug"
+
 # ============================================================================
 # Script starts here - no need to edit below unless customizing further
 # ============================================================================
@@ -82,6 +85,9 @@ if [ ! -f "$YOUR_APK" ]; then
     exit 1
 fi
 
+# Create sample-app directory if it doesn't exist
+mkdir -p "$AOSP_DIR/device/brcm/rpi5/sample-app"
+
 # Copy APK to sample-app directory
 cp "$YOUR_APK" "$AOSP_DIR/device/brcm/rpi5/sample-app/YourApp.apk"
 echo "✓ Copied APK to device directory"
@@ -107,6 +113,17 @@ if [ ! -f "$YOUR_LOGO" ]; then
     echo -e "${RED}Error: Logo file not found: $YOUR_LOGO${NC}"
     echo "Please update YOUR_LOGO variable or place your logo at that location"
     exit 1
+fi
+
+# Verify create-bootanimation.sh exists and is executable
+BOOT_SCRIPT="$REPO_DIR/customization/boot-animation/create-bootanimation.sh"
+if [ ! -f "$BOOT_SCRIPT" ]; then
+    echo -e "${RED}Error: Boot animation script not found: $BOOT_SCRIPT${NC}"
+    exit 1
+fi
+
+if [ ! -x "$BOOT_SCRIPT" ]; then
+    chmod +x "$BOOT_SCRIPT"
 fi
 
 # Create boot animation
@@ -169,7 +186,7 @@ echo "1. Review the changes in $AOSP_DIR/device/brcm/rpi5/"
 echo "2. Build AOSP:"
 echo "   cd $AOSP_DIR"
 echo "   source build/envsetup.sh"
-echo "   lunch aosp_rpi5-bp1a-userdebug"
+echo "   lunch $LUNCH_TARGET"
 echo "   make -j\$(nproc)"
 echo ""
 echo "3. Flash to SD card:"
