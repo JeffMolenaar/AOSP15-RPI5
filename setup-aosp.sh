@@ -10,6 +10,10 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# Constants
+MIN_DISK_SPACE_GB=300
+MIN_RAM_GB=16
+
 echo -e "${GREEN}========================================${NC}"
 echo -e "${GREEN}AOSP 15 for Raspberry Pi 5 Setup${NC}"
 echo -e "${GREEN}Display: ED-HMI3010-101C (10.1\" 1280x800)${NC}"
@@ -18,18 +22,18 @@ echo -e "${GREEN}========================================${NC}"
 # Check system requirements
 echo -e "\n${YELLOW}Checking system requirements...${NC}"
 
-# Check available disk space (need at least 300GB)
+# Check available disk space (need at least MIN_DISK_SPACE_GB)
 AVAILABLE_SPACE=$(df -BG . | awk 'NR==2 {print $4}' | sed 's/G//')
-if [ "$AVAILABLE_SPACE" -lt 300 ]; then
-    echo -e "${RED}Error: Insufficient disk space. Need at least 300GB, have ${AVAILABLE_SPACE}GB${NC}"
+if [ "$AVAILABLE_SPACE" -lt "$MIN_DISK_SPACE_GB" ]; then
+    echo -e "${RED}Error: Insufficient disk space. Need at least ${MIN_DISK_SPACE_GB}GB, have ${AVAILABLE_SPACE}GB${NC}"
     exit 1
 fi
 echo -e "${GREEN}✓ Disk space: ${AVAILABLE_SPACE}GB available${NC}"
 
 # Check RAM
 TOTAL_RAM=$(free -g | awk 'NR==2 {print $2}')
-if [ "$TOTAL_RAM" -lt 16 ]; then
-    echo -e "${YELLOW}Warning: Less than 16GB RAM detected. Build may be slow.${NC}"
+if [ "$TOTAL_RAM" -lt "$MIN_RAM_GB" ]; then
+    echo -e "${YELLOW}Warning: Less than ${MIN_RAM_GB}GB RAM detected. Build may be slow.${NC}"
 else
     echo -e "${GREEN}✓ RAM: ${TOTAL_RAM}GB${NC}"
 fi

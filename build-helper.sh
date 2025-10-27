@@ -114,7 +114,7 @@ case "$ACTION" in
             echo -e "\n${BLUE}Build Output:${NC}"
             du -sh out/target/product/rpi5
             if [ -f "out/target/product/rpi5/rpi5.img" ]; then
-                echo -e "Image: $(ls -lh out/target/product/rpi5/rpi5.img | awk '{print $5}')"
+                echo -e "Image: $(stat -c%s out/target/product/rpi5/rpi5.img | numfmt --to=iec-i --suffix=B)"
             fi
         fi
         
@@ -133,6 +133,17 @@ case "$ACTION" in
         DEVICE="$2"
         IMAGE="out/target/product/rpi5/rpi5.img"
         
+        # Validate device path
+        if [[ ! "$DEVICE" =~ ^/dev/sd[a-z]$ ]] && [[ ! "$DEVICE" =~ ^/dev/mmcblk[0-9]+$ ]]; then
+            echo -e "${RED}Error: Invalid device path. Must be /dev/sdX or /dev/mmcblkN${NC}"
+            exit 1
+        fi
+        
+        if [ ! -b "$DEVICE" ]; then
+            echo -e "${RED}Error: Device $DEVICE does not exist or is not a block device${NC}"
+            exit 1
+        fi
+        
         if [ ! -f "$IMAGE" ]; then
             echo -e "${RED}Error: Image file not found: $IMAGE${NC}"
             echo -e "Please build first: $0 build"
@@ -140,7 +151,7 @@ case "$ACTION" in
         fi
         
         echo -e "\n${RED}WARNING: This will ERASE ALL DATA on $DEVICE${NC}"
-        echo -e "Image: $IMAGE"
+        echo -e "Image: $IMAGE ($(stat -c%s "$IMAGE" | numfmt --to=iec-i --suffix=B))"
         read -p "Continue? (yes/N): " CONFIRM
         
         if [ "$CONFIRM" = "yes" ]; then

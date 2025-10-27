@@ -24,7 +24,7 @@
                 compatible = "edt,edt-ft5406", "edt,edt-ft5x06";
                 reg = <0x38>;
                 interrupt-parent = <&gpio>;
-                interrupts = <22 2>; /* GPIO22, falling edge */
+                interrupts = <22 2>; /* GPIO22, IRQ_TYPE_EDGE_FALLING (2) */
                 
                 touchscreen-size-x = <1280>;
                 touchscreen-size-y = <800>;
@@ -33,8 +33,8 @@
                 touchscreen-swapped-x-y;
                 
                 /* Wake and reset GPIO configuration */
-                reset-gpios = <&gpio 26 1>; /* GPIO26, active low */
-                wake-gpios = <&gpio 27 0>;  /* GPIO27, active high */
+                reset-gpios = <&gpio 26 1>; /* GPIO26, GPIO_ACTIVE_LOW (1) */
+                wake-gpios = <&gpio 27 0>;  /* GPIO27, GPIO_ACTIVE_HIGH (0) */
                 
                 /* Touch parameters */
                 touchscreen-fuzz-x = <0>;
