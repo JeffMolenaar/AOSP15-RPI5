@@ -20,6 +20,30 @@ echo -e "${BLUE}========================================${NC}"
 echo -e "${BLUE}AOSP Build Helper for Raspberry Pi 5${NC}"
 echo -e "${BLUE}========================================${NC}"
 
+# Parse command line arguments
+ACTION="${1:-build}"
+
+# Help doesn't require AOSP directory
+if [ "$ACTION" = "help" ] || [ "$ACTION" = "--help" ] || [ "$ACTION" = "-h" ]; then
+    echo -e "\nUsage: $0 [action] [options]"
+    echo -e "\nActions:"
+    echo -e "  build         - Build complete AOSP (default)"
+    echo -e "  clean         - Clean build output"
+    echo -e "  clobber       - Remove all build output"
+    echo -e "  kernel        - Build kernel only"
+    echo -e "  sync          - Sync source code"
+    echo -e "  info          - Show build information"
+    echo -e "  flash DEVICE  - Flash image to SD card (e.g., flash /dev/sdc)"
+    echo -e "  help          - Show this help"
+    echo -e "\nExamples:"
+    echo -e "  $0 build              # Full build"
+    echo -e "  $0 kernel             # Build kernel only"
+    echo -e "  $0 flash /dev/sdc     # Flash to SD card"
+    echo -e "  $0 sync && $0 build   # Update and build"
+    echo -e ""
+    exit 0
+fi
+
 # Check if AOSP directory exists
 if [ ! -d "$AOSP_DIR" ]; then
     echo -e "${RED}Error: AOSP directory not found at $AOSP_DIR${NC}"
@@ -38,8 +62,8 @@ fi
 
 cd "$AOSP_DIR"
 
-# Parse command line arguments
-ACTION="${1:-build}"
+# Parse command line arguments (already set above for help)
+# ACTION="${1:-build}"
 
 case "$ACTION" in
     build)
@@ -162,25 +186,6 @@ case "$ACTION" in
         else
             echo -e "${YELLOW}Flashing cancelled${NC}"
         fi
-        ;;
-        
-    help|--help|-h)
-        echo -e "\nUsage: $0 [action] [options]"
-        echo -e "\nActions:"
-        echo -e "  build         - Build complete AOSP (default)"
-        echo -e "  clean         - Clean build output"
-        echo -e "  clobber       - Remove all build output"
-        echo -e "  kernel        - Build kernel only"
-        echo -e "  sync          - Sync source code"
-        echo -e "  info          - Show build information"
-        echo -e "  flash DEVICE  - Flash image to SD card (e.g., flash /dev/sdc)"
-        echo -e "  help          - Show this help"
-        echo -e "\nExamples:"
-        echo -e "  $0 build              # Full build"
-        echo -e "  $0 kernel             # Build kernel only"
-        echo -e "  $0 flash /dev/sdc     # Flash to SD card"
-        echo -e "  $0 sync && $0 build   # Update and build"
-        echo -e ""
         ;;
         
     *)
