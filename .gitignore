@@ -50,6 +50,19 @@ yarn-error.log
 *.rar
 *.7z
 
+# But keep specific template files
+!customization/boot-animation/template/**/*.zip
+
+# APK files (user should provide their own)
+*.apk
+
+# Generated boot animations (user-specific)
+customization/boot-animation/bootanimation.zip
+
+# User-provided images
+customization/boot-animation/**/*.png
+!customization/boot-animation/template/**/.gitkeep
+
 # Backup files
 *.bak
 *.backup

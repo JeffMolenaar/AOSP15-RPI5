@@ -20,7 +20,3 @@ include $(BUILD_PREBUILT)
 # Change com.example.yourapp to your actual package name
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.autostart.package=com.example.yourapp
-
-# Grant necessary permissions for auto-start
-PRODUCT_COPY_FILES += \
-    device/brcm/rpi5/permissions/privapp-permissions-autostart.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-autostart.xml
