@@ -1,0 +1,12 @@
+This directory should contain your logo image as: 0000.png
+
+Requirements:
+- File name: 0000.png (exactly, with 4 zeros)
+- Format: PNG
+- Recommended size: 800x600 pixels (landscape) or 600x800 (portrait)
+- Transparency: Supported
+
+To create a boot animation:
+1. Place your logo.png in this directory and rename to 0000.png
+2. Run: cd .. && zip -0qry -i \*.txt \*.png @ ../bootanimation.zip desc.txt part0
+3. Or use the helper script: ../create-bootanimation.sh your-logo.png
