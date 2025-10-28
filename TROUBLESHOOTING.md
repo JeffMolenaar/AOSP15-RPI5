@@ -67,8 +67,8 @@ Common issues and solutions for building and running AOSP 15 on Raspberry Pi 5 w
 **Solution**: Reinstall dependencies:
 ```bash
 sudo apt-get update
-sudo apt-get install -y git-core gnupg flex bison build-essential zip curl zlib1g-dev \
-    gcc-multilib g++-multilib libc6-dev-i386 libncurses5 lib32ncurses5-dev x11proto-core-dev \
+sudo apt-get install -y git gnupg flex bison build-essential zip curl zlib1g-dev \
+    gcc-multilib g++-multilib libc6-dev-i386 libncurses6 libncurses-dev x11proto-core-dev \
     libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig \
     bc coreutils dosfstools e2fsprogs fdisk kpartx mtools ninja-build pkg-config python3-pip rsync \
     openjdk-11-jdk
