@@ -152,7 +152,7 @@ Before submitting script changes:
 1. **Test on clean system**
    ```bash
    # Use VM or container
-   docker run -it ubuntu:22.04
+   docker run -it ubuntu:24.04
    ```
 
 2. **Test error cases**
@@ -339,7 +339,7 @@ What should happen.
 What actually happens.
 
 **Environment**
-- OS: Ubuntu 22.04
+- OS: Ubuntu 24.04.3
 - Hardware: 16GB RAM, 8 cores
 - Version: Latest main branch
 
@@ -371,7 +371,7 @@ Other approaches considered?
 
 ### Prerequisites
 
-- Linux system (Ubuntu 22.04 recommended)
+- Linux system (Ubuntu 24.04.3 LTS recommended)
 - Git installed
 - Text editor (VS Code, vim, etc.)
 - shellcheck (for script validation)

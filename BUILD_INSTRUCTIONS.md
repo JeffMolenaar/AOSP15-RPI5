@@ -6,10 +6,10 @@ This guide will help you build Android 15 (AOSP) for Raspberry Pi 5 with the ED-
 ## System Requirements
 
 ### Host Machine
-- **OS**: Ubuntu 22.04 LTS (recommended) or similar Linux distribution
+- **OS**: Ubuntu 24.04.3 LTS (recommended) or similar Linux distribution
 - **CPU**: 8-core minimum (16-core recommended)
 - **RAM**: 32GB minimum (64GB recommended for faster builds)
-- **Storage**: 300GB+ free space (SSD/NVMe strongly recommended)
+- **Storage**: 100GB+ free space (SSD/NVMe strongly recommended)
 - **Internet**: Fast connection for downloading ~100GB of source code
 
 ### Target Hardware

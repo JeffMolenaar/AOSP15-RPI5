@@ -11,7 +11,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Constants
-MIN_DISK_SPACE_GB=300
+MIN_DISK_SPACE_GB=100
 MIN_RAM_GB=16
 
 echo -e "${GREEN}========================================${NC}"

@@ -120,10 +120,10 @@ After setup, you'll have:
 ## 🖥️ Hardware Specifications
 
 ### Host Build Machine (Recommended)
-- **OS**: Ubuntu 22.04 LTS
+- **OS**: Ubuntu 24.04.3 LTS
 - **CPU**: 16-core (8-core minimum)
 - **RAM**: 64GB (32GB minimum, 16GB possible with swap)
-- **Storage**: 400GB free (SSD/NVMe strongly recommended)
+- **Storage**: 100GB free (SSD/NVMe strongly recommended)
 - **Internet**: Fast connection for ~100GB download
 
 ### Target Hardware

@@ -84,19 +84,19 @@ repo sync  # Resume where it left off
 - **Download**: ~100GB
 - **Extracted**: ~150GB
 - **Build output**: ~50-100GB
-- **Total**: 300GB minimum, 400GB+ recommended
+- **Total**: 100GB minimum, 150GB+ recommended
 
 ### Q: Can I build on Windows or macOS?
 **A:** 
 - **Windows**: No, AOSP requires Linux. Use WSL2 or a VM
 - **macOS**: Theoretically possible but not recommended. Use Linux VM
-- **Linux**: Yes, Ubuntu 22.04 LTS recommended
+- **Linux**: Yes, Ubuntu 24.04.3 LTS recommended
 
 ### Q: Can I build in a VM?
 **A:** Yes, but allocate enough resources:
 - 8+ CPU cores
 - 32GB+ RAM
-- 300GB+ disk space
+- 100GB+ disk space
 - SSD storage highly recommended
 
 ### Q: How do I update to a newer Android version?
