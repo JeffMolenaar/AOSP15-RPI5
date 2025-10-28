@@ -81,10 +81,9 @@ repo sync  # Resume where it left off
 
 ### Q: How much disk space do I need?
 **A:**
-- **Download**: ~100GB
-- **Extracted**: ~150GB
-- **Build output**: ~50-100GB
-- **Total**: 100GB minimum, 150GB+ recommended
+- **Minimum**: 100GB (requires careful space management)
+- **Recommended**: 150GB+ for comfortable development
+- **Note**: Source repo is ~80-90GB, build artifacts add 30-40GB
 
 ### Q: Can I build on Windows or macOS?
 **A:** 
