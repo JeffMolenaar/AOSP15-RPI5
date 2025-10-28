@@ -4,7 +4,7 @@ This is a streamlined guide to get you building AOSP 15 for your Raspberry Pi 5 
 
 ## Prerequisites
 
-- Ubuntu 22.04 LTS (or similar) with 300GB+ free space
+- Ubuntu 24.04.3 LTS (or similar) with 100GB+ free space
 - Fast internet connection
 - 4-8 hours for download and build
 

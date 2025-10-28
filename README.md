@@ -38,10 +38,10 @@ See [**QUICKSTART.md**](QUICKSTART.md) for the streamlined guide.
 ### 💻 System Requirements
 
 **Host Machine**:
-- Ubuntu 22.04 LTS or similar
+- Ubuntu 24.04.3 LTS or similar
 - 8+ CPU cores (16 recommended)
 - 32GB+ RAM (64GB recommended)
-- 300GB+ free storage (SSD preferred)
+- 100GB+ free storage (SSD preferred)
 - Fast internet connection
 
 **Target Hardware**:
@@ -117,7 +117,7 @@ cd customization/boot-animation
 **Build Fails**:
 - Check `~/aosp-rpi5/out/error.log`
 - Try reducing parallel jobs: `make -j4`
-- Ensure 300GB+ free space
+- Ensure 100GB+ free space
 
 **Touch Not Working**:
 - Verify I2C connection in kernel logs
