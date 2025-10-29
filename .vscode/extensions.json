@@ -1,0 +1,37 @@
+{
+    "recommendations": [
+        // Shell script support
+        "timonwong.shellcheck",
+        "foxundermoon.shell-format",
+        "mads-hartmann.bash-ide-vscode",
+
+        // Markdown support
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+
+        // Git and GitHub
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+
+        // Device Tree support
+        "mshr-h.vscode-devicetree",
+
+        // Code formatting and linting
+        "editorconfig.editorconfig",
+
+        // File management
+        "alefragnani.project-manager",
+        "gruntfuggly.todo-tree",
+
+        // Utility extensions
+        "christian-kohler.path-intellisense",
+        "wayou.vscode-todo-highlight",
+        "shardulm94.trailing-spaces",
+
+        // Bash debugging
+        "rogalmic.bash-debug",
+
+        // YAML support (for potential CI/CD files)
+        "redhat.vscode-yaml"
+    ]
+}

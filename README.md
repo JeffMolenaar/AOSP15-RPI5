@@ -54,6 +54,7 @@ See [**QUICKSTART.md**](QUICKSTART.md) for the streamlined guide.
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Fast-track build guide (start here!)
 - **[BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)** - Detailed build instructions, customization, and troubleshooting
+- **[VSCODE_SETUP.md](VSCODE_SETUP.md)** - Visual Studio Code setup guide with tasks, debugging, and extensions
 - **[customization/README.md](customization/README.md)** - Easy customization: portrait mode, auto-start apps, boot animation
 - **[device-tree/README.md](device-tree/README.md)** - Touch controller configuration details
 
@@ -73,6 +74,7 @@ See [**QUICKSTART.md**](QUICKSTART.md) for the streamlined guide.
 ✅ **HDMI Display** - Auto-detected 1280x800 output  
 ✅ **Easy Customization** - Portrait mode, auto-start apps, custom boot animation  
 ✅ **Helper Scripts** - Simplified build, flash, and maintenance  
+✅ **VS Code Integration** - Full IDE support with tasks, debugging, and extensions  
 ✅ **Complete Documentation** - From setup to troubleshooting  
 
 ### 🔧 Helper Commands
@@ -154,6 +156,7 @@ This repository's scripts and documentation are provided as-is for educational a
 
 - [Quick Start Guide](QUICKSTART.md) - Get building fast
 - [Detailed Instructions](BUILD_INSTRUCTIONS.md) - Complete guide
+- [VS Code Setup](VSCODE_SETUP.md) - IDE integration with tasks and debugging
 - [Customization Guide](customization/README.md) - Portrait mode, auto-start apps, boot animation
 - [Device Tree Info](device-tree/README.md) - Touch configuration
 - [Setup Script](setup-aosp.sh) - Automated setup

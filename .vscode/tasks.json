@@ -1,0 +1,198 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "AOSP: Setup Environment",
+            "type": "shell",
+            "command": "./setup-aosp.sh",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "AOSP: Build Complete",
+            "type": "shell",
+            "command": "./build-helper.sh build",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "AOSP: Build Kernel Only",
+            "type": "shell",
+            "command": "./build-helper.sh kernel",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "AOSP: Sync Source Code",
+            "type": "shell",
+            "command": "./build-helper.sh sync",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "AOSP: Clean Build Output",
+            "type": "shell",
+            "command": "./build-helper.sh clean",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "AOSP: Show Build Info",
+            "type": "shell",
+            "command": "./build-helper.sh info",
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "AOSP: Flash to SD Card",
+            "type": "shell",
+            "command": "./build-helper.sh flash ${input:sdDevice}",
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Device Tree: Compile Touch Overlay",
+            "type": "shell",
+            "command": "dtc -@ -I dts -O dtb -o hmi3010-touch-overlay.dtbo hmi3010-touch-overlay.dts",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/device-tree"
+            }
+        },
+        {
+            "label": "Customization: Create Boot Animation",
+            "type": "shell",
+            "command": "./create-bootanimation.sh ${input:logoFile}",
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/customization/boot-animation"
+            }
+        },
+        {
+            "label": "Shell: Check Scripts with ShellCheck",
+            "type": "shell",
+            "command": "shellcheck *.sh customization/boot-animation/*.sh",
+            "problemMatcher": {
+                "owner": "shellcheck",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                    "regexp": "^In (.*) line (\\d+):$",
+                    "file": 1,
+                    "line": 2
+                }
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Markdown: Lint All Documentation",
+            "type": "shell",
+            "command": "markdownlint *.md customization/**/*.md device-tree/*.md",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Git: Show Repository Status",
+            "type": "shell",
+            "command": "git status && echo '\n--- Recent Commits ---\n' && git log --oneline -5",
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "sdDevice",
+            "type": "promptString",
+            "description": "SD Card device (e.g., /dev/sdc)",
+            "default": "/dev/sdc"
+        },
+        {
+            "id": "logoFile",
+            "type": "promptString",
+            "description": "Path to logo image file (PNG)",
+            "default": "your-logo.png"
+        }
+    ]
+}
