@@ -23,7 +23,7 @@ out/
 error.log
 
 # Editor files
-.vscode/
+# .vscode/ - Now included in repository for project structure
 .idea/
 *.sublime-*
 .project
@@ -77,6 +77,6 @@ test_output/
 test_results/
 
 # IDE
-.vscode/
+# .vscode/ - Now included in repository for project structure
 .idea/
 *.iml

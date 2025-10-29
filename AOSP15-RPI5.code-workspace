@@ -1,0 +1,31 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "name": "AOSP15-RPI5"
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/.git": false,
+            "**/.repo": true,
+            "**/aosp-rpi5": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "timonwong.shellcheck",
+            "foxundermoon.shell-format",
+            "mads-hartmann.bash-ide-vscode",
+            "yzhang.markdown-all-in-one",
+            "davidanson.vscode-markdownlint",
+            "github.vscode-pull-request-github",
+            "eamodio.gitlens",
+            "mshr-h.vscode-devicetree"
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": []
+    }
+}
