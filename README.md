@@ -54,7 +54,8 @@ See [**QUICKSTART.md**](QUICKSTART.md) for the streamlined guide.
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Fast-track build guide (start here!)
 - **[BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)** - Detailed build instructions, customization, and troubleshooting
-- **[POST_BUILD.md](POST_BUILD.md)** - What to do after build completes (flashing & booting)
+- **[NEXT_STEPS.md](NEXT_STEPS.md)** - Quick reference: Build done, now what? 
+- **[POST_BUILD.md](POST_BUILD.md)** - Complete guide: Flashing & booting (detailed)
 - **[FAQ.md](FAQ.md)** - Frequently asked questions
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
 - **[VSCODE_SETUP.md](VSCODE_SETUP.md)** - Visual Studio Code setup guide with tasks, debugging, and extensions
@@ -159,7 +160,8 @@ This repository's scripts and documentation are provided as-is for educational a
 
 - [Quick Start Guide](QUICKSTART.md) - Get building fast
 - [Detailed Instructions](BUILD_INSTRUCTIONS.md) - Complete guide
-- [Post-Build Guide](POST_BUILD.md) - After build: flash & boot
+- **[Next Steps](NEXT_STEPS.md) - Build complete? Start here!** ⭐
+- [Post-Build Guide](POST_BUILD.md) - After build: flash & boot (detailed)
 - [FAQ](FAQ.md) - Frequently asked questions
 - [Troubleshooting](TROUBLESHOOTING.md) - Common issues
 - [VS Code Setup](VSCODE_SETUP.md) - IDE integration with tasks and debugging
