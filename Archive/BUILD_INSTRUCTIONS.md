@@ -84,15 +84,53 @@ Build time depends on your system:
 - 16-core with SSD: ~2-4 hours
 - 8-core with HDD: ~6-10 hours
 
+**✅ Build Complete!** When the build finishes successfully, you'll see something like:
+```
+#### build completed successfully (HH:MM:SS (HH:MM)) ####
+```
+
+**📖 Next Steps**: See **[POST_BUILD.md](POST_BUILD.md)** for a complete guide on creating the flashable image and booting your Raspberry Pi 5.
+
 ### 5. Create Flashable Image
 
-After the build completes successfully, create the SD card image:
+**Important**: After the `make` command completes, you need to create a flashable SD card image.
+
+The build process creates individual partition images and system files in `~/aosp-rpi5/out/target/product/rpi5/`, but these need to be combined into a single bootable image for the SD card.
+
+#### Option A: Using the Helper Script (Recommended)
+
+If the `rpi5-mkimg.sh` script is available in your AOSP directory:
 
 ```bash
+cd ~/aosp-rpi5
 ./rpi5-mkimg.sh
 ```
 
-This creates a flashable image in the `out/` directory.
+This script will:
+- Combine all partition images
+- Create a bootable SD card image
+- Save it as `out/target/product/rpi5/rpi5.img`
+
+#### Option B: Manual Image Creation
+
+If `rpi5-mkimg.sh` is not available, the build outputs are in:
+```bash
+ls ~/aosp-rpi5/out/target/product/rpi5/
+```
+
+Key files include:
+- `boot.img` - Kernel and boot partition
+- `system.img` - Android system partition  
+- `vendor.img` - Vendor partition
+- `userdata.img` - User data partition
+
+You can flash these individually or use the repository's `build-helper.sh`:
+```bash
+cd /path/to/AOSP15-RPI5
+./build-helper.sh flash /dev/sdX
+```
+
+This will automatically handle the image files from your build directory.
 
 ### 6. Flash to SD Card
 
