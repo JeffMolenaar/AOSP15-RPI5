@@ -69,6 +69,20 @@ lunch aosp_rpi5-bp1a-userdebug
 make -j4  # Use 4 jobs instead of all cores
 ```
 
+### Built manually with make command?
+If you ran `make -j$(nproc)` directly instead of using `build-helper.sh build`, you need to create the flashable image:
+```bash
+cd ~/aosp-rpi5
+./rpi5-mkimg.sh  # Creates the SD card image
+```
+Then flash using: `cd /path/to/AOSP15-RPI5 && ./build-helper.sh flash /dev/sdX`
+
+Or manually:
+```bash
+sudo dd if=~/aosp-rpi5/out/target/product/rpi5/rpi5.img of=/dev/sdX bs=4M status=progress
+sync
+```
+
 ### Touch screen not working
 The device tree overlay should be automatically included. If touch doesn't work:
 1. Verify I2C connection

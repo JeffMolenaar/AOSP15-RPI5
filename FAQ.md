@@ -104,6 +104,39 @@ repo sync  # Resume where it left off
 2. Sync: `repo sync`
 3. Rebuild: `./build-helper.sh build`
 
+### Q: My build completed successfully! Now what? How do I use it on the Raspberry Pi?
+**A:** Congratulations! After `make -j$(nproc)` finishes, follow these steps:
+
+1. **Create the flashable image** (if not done automatically):
+   ```bash
+   cd ~/aosp-rpi5
+   ./rpi5-mkimg.sh  # Creates rpi5.img from build outputs
+   ```
+
+2. **Flash to SD card**:
+   ```bash
+   # Find your SD card device
+   lsblk
+   
+   # Flash the image (WARNING: This erases the SD card!)
+   sudo dd if=~/aosp-rpi5/out/target/product/rpi5/rpi5.img of=/dev/sdX bs=4M status=progress
+   sync
+   ```
+   Replace `/dev/sdX` with your actual SD card device (e.g., `/dev/sdb`).
+
+3. **Boot on Raspberry Pi**:
+   - Insert the SD card into your Raspberry Pi 5
+   - Connect the ED-HMI3010-101C display via HDMI
+   - Connect power and wait 2-3 minutes for first boot
+
+**Alternative using build-helper.sh**:
+```bash
+cd /path/to/AOSP15-RPI5
+./build-helper.sh flash /dev/sdX
+```
+
+See BUILD_INSTRUCTIONS.md sections 5-7 for detailed flashing instructions.
+
 ## Software Questions
 
 ### Q: Does Google Play Store work?

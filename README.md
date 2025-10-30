@@ -54,6 +54,9 @@ See [**QUICKSTART.md**](QUICKSTART.md) for the streamlined guide.
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Fast-track build guide (start here!)
 - **[BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)** - Detailed build instructions, customization, and troubleshooting
+- **[POST_BUILD.md](POST_BUILD.md)** - What to do after build completes (flashing & booting)
+- **[FAQ.md](FAQ.md)** - Frequently asked questions
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
 - **[VSCODE_SETUP.md](VSCODE_SETUP.md)** - Visual Studio Code setup guide with tasks, debugging, and extensions
 - **[customization/README.md](customization/README.md)** - Easy customization: portrait mode, auto-start apps, boot animation
 - **[device-tree/README.md](device-tree/README.md)** - Touch controller configuration details
@@ -156,6 +159,9 @@ This repository's scripts and documentation are provided as-is for educational a
 
 - [Quick Start Guide](QUICKSTART.md) - Get building fast
 - [Detailed Instructions](BUILD_INSTRUCTIONS.md) - Complete guide
+- [Post-Build Guide](POST_BUILD.md) - After build: flash & boot
+- [FAQ](FAQ.md) - Frequently asked questions
+- [Troubleshooting](TROUBLESHOOTING.md) - Common issues
 - [VS Code Setup](VSCODE_SETUP.md) - IDE integration with tasks and debugging
 - [Customization Guide](customization/README.md) - Portrait mode, auto-start apps, boot animation
 - [Device Tree Info](device-tree/README.md) - Touch configuration
