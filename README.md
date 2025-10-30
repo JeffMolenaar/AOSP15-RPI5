@@ -54,7 +54,7 @@ See [**QUICKSTART.md**](QUICKSTART.md) for the streamlined guide.
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Fast-track build guide (start here!)
 - **[BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)** - Detailed build instructions, customization, and troubleshooting
-- **[NEXT_STEPS.md](NEXT_STEPS.md)** - Quick reference: Build done, now what? 
+- **[NEXT_STEPS.md](NEXT_STEPS.md)** - Quick reference: Build done, now what?
 - **[POST_BUILD.md](POST_BUILD.md)** - Complete guide: Flashing & booting (detailed)
 - **[FAQ.md](FAQ.md)** - Frequently asked questions
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
