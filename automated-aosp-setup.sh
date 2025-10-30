@@ -111,10 +111,10 @@ install_dependencies() {
     
     log_info "Installing version control and utilities..."
     sudo apt-get install -y \
-        git git-lfs repo ccache \
+        git git-lfs ccache \
         vim nano wget curl \
-        openjdk-11-jdk \
-        libncurses5 libncurses5-dev
+        openjdk-17-jdk \
+        libncurses6 libncurses-dev
     
     log_info "Installing kernel build dependencies..."
     sudo apt-get install -y \
