@@ -14,6 +14,29 @@ NC='\033[0m' # No Color
 MIN_DISK_SPACE_GB=100
 MIN_RAM_GB=16
 
+# Repository and trace directory to store traces/artifacts for reproducibility
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_BUILD_DIR="${REPO_DIR}/script-folder/build"
+
+mkdir -p "${SCRIPT_BUILD_DIR}"
+
+# Default AOSP working directory (used throughout the script)
+AOSP_DIR="${HOME}/aosp-rpi5"
+
+# Clean previous session artifacts in the trace folder while preserving .gitkeep
+echo -e "\n${YELLOW}Cleaning previous session artifacts...${NC}"
+if [ -d "${SCRIPT_BUILD_DIR}" ]; then
+    # remove everything except .gitkeep
+    find "${SCRIPT_BUILD_DIR}" -mindepth 1 -not -name '.gitkeep' -print0 | xargs -0 -r rm -rf --
+fi
+touch "${SCRIPT_BUILD_DIR}/.gitkeep"
+
+# If a previous setup marker exists in the AOSP directory, remove the marker (non-destructive)
+if [ -f "${AOSP_DIR}/.aosp_setup_complete" ]; then
+    echo -e "${YELLOW}Found previous setup marker at ${AOSP_DIR}/.aosp_setup_complete - removing marker${NC}"
+    rm -f "${AOSP_DIR}/.aosp_setup_complete"
+fi
+
 echo -e "${GREEN}========================================${NC}"
 echo -e "${GREEN}AOSP 15 for Raspberry Pi 5 Setup${NC}"
 echo -e "${GREEN}Display: ED-HMI3010-101C (10.1\" 1280x800)${NC}"
@@ -23,12 +46,30 @@ echo -e "${GREEN}========================================${NC}"
 echo -e "\n${YELLOW}Checking system requirements...${NC}"
 
 # Check available disk space (need at least MIN_DISK_SPACE_GB)
-AVAILABLE_SPACE=$(df -BG . | awk 'NR==2 {print $4}' | sed 's/G//')
+# Use the user's HOME (where we create the AOSP_DIR) to measure available space
+TARGET_DIR="${HOME}"
+AVAILABLE_SPACE="0"
+if command -v df >/dev/null 2>&1; then
+    # Prefer an exact byte value, then convert to GB (rounded down)
+    AVAILABLE_BYTES=$(df --output=avail -B1 "$TARGET_DIR" 2>/dev/null | tail -n1 | tr -d '[:space:]') || true
+    if [[ "$AVAILABLE_BYTES" =~ ^[0-9]+$ ]]; then
+        AVAILABLE_SPACE=$((AVAILABLE_BYTES/1024/1024/1024))
+    else
+        # Fallback for systems where df doesn't support -B1 or --output
+        AVAILABLE_SPACE=$(df -BG "$TARGET_DIR" 2>/dev/null | awk 'NR==2 {print $4}' | sed 's/G//' || echo 0)
+    fi
+else
+    echo -e "${YELLOW}Warning: 'df' not available; skipping disk space check.${NC}"
+    AVAILABLE_SPACE=9999
+fi
+
 if [ "$AVAILABLE_SPACE" -lt "$MIN_DISK_SPACE_GB" ]; then
     echo -e "${RED}Error: Insufficient disk space. Need at least ${MIN_DISK_SPACE_GB}GB, have ${AVAILABLE_SPACE}GB${NC}"
+    echo -e "${YELLOW}Diagnostic: 'df -h ${TARGET_DIR}' output:${NC}"
+    df -h "$TARGET_DIR" 2>/dev/null || true
     exit 1
 fi
-echo -e "${GREEN}✓ Disk space: ${AVAILABLE_SPACE}GB available${NC}"
+echo -e "${GREEN}✓ Disk space: ${AVAILABLE_SPACE}GB available (checked on ${TARGET_DIR})${NC}"
 
 # Check RAM
 TOTAL_RAM=$(free -g | awk 'NR==2 {print $2}')
@@ -74,7 +115,6 @@ echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
 echo -e "${GREEN}✓ Repo tool installed${NC}"
 
 # Create AOSP working directory
-AOSP_DIR="${HOME}/aosp-rpi5"
 echo -e "\n${YELLOW}Setting up AOSP directory: ${AOSP_DIR}${NC}"
 
 if [ -d "$AOSP_DIR" ]; then
@@ -125,6 +165,11 @@ fi
 
 # Create a marker file to indicate successful setup
 touch .aosp_setup_complete
+
+# Also save a trace/marker in the script-folder/build so setup is easy to find
+cp .aosp_setup_complete "${SCRIPT_BUILD_DIR}/.aosp_setup_complete" || true
+echo "Setup completed: $(date)" > "${SCRIPT_BUILD_DIR}/setup-summary.txt"
+echo "AOSP setup artifacts and markers are saved to: ${SCRIPT_BUILD_DIR}"
 
 echo -e "\n${GREEN}========================================${NC}"
 echo -e "${GREEN}Setup Complete!${NC}"

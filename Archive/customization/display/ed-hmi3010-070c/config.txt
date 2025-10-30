@@ -1,0 +1,19 @@
+# config fragment for ED-HMI3010-070C-DSI
+# Place or include these lines in your boot config.txt if the build system
+# does not already install a specific config.txt for your device.
+
+# Use KMS DSI driver
+dtoverlay=vc4-kms-dsi
+max_framebuffers=2
+disable_fw_kms_setup=1
+
+# Panel-specific overlay
+# (the build should install ed-hmi3010-070c.dtbo into overlays/)
+# Use the overlay without the panel-specific variant if you prefer to control
+# timing manually.
+dtoverlay=ed-hmi3010-070c,interrupt=2
+
+# Other helpful params
+disable_overscan=1
+arm_64bit=1
+

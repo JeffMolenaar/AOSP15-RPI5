@@ -1,0 +1,44 @@
+/*
+ * ED-HMI3010-070C DSI panel overlay (template)
+ *
+ * This is a template Device Tree overlay for the ED-HMI3010-070C-DSI panel.
+ * It may require edits to match the panel timings, GPIOs and backlight controls
+ * for your hardware. Use `dtc -I dts -O dtb -o <name>.dtbo <name>.dts` to compile.
+ *
+ * If you're unsure about the settings, copy this file into your AOSP device
+ * tree and adapt it, or open an issue with the panel vendor for the correct DTS.
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2711";
+
+    fragment@0 {
+        target-path = "/soc/i2c@7e204000"; /* adjust target as needed */
+        __overlay__ {
+            /* Example: touch controller on i2c - adjust if panel uses SPI */
+            ed_hmi3010_touch: ed_hmi3010_touch@38 {
+                compatible = "ed,hmi3010-touch";
+                reg = <0x38>;
+                interrupt-parent = <&gpio>;
+                interrupts = <20 IRQ_TYPE_LEVEL_LOW>; /* adjust GPIO/IRQ */
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&dsi0>;
+        __overlay__ {
+            ed_hmi3010_panel: panel@0 {
+                compatible = "ed,hmi3010-070c-dsi";
+                /* Panel-specific properties: timings, bus-width, lane settings */
+                reset-gpios = <&gpio 17 GPIO_ACTIVE_LOW>; /* example */
+                power-supply = <&vcc5v>;
+                status = "okay";
+                /* Add required timings and 'panel-timing' nodes here */
+            };
+        };
+    };
+};
